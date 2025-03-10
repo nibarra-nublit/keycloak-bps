@@ -8,7 +8,7 @@
 
 **Temas a Cubrir:**
 
-1. **[Conceptos de Autenticación y Autorización](./Dia 1 - Nivelación - Gestión de Usuarios, Roles y Seguridad/Material/1. Autenticación y autorización.md)**
+1. ** [Conceptos de Autenticación y Autorización](./Dia 1 - Nivelación - Gestión de Usuarios, Roles y Seguridad/Material/1. Autenticación y autorización.md) **
     
     - Diferencias clave entre autenticación y autorización        
     - Relación entre estos conceptos y la arquitectura de seguridad        
