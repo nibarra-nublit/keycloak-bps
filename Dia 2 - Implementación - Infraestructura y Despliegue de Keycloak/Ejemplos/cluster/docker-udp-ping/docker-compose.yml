@@ -45,7 +45,7 @@ services:
 
       - KC_HTTP_RELATIVE_PATH=/
       
-      #- KC_PROXY=true
+      - KC_PROXY=true
       - KC_CACHE=ispn
       - KC_LOG_LEVEL=INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
     depends_on:
@@ -79,7 +79,7 @@ services:
       
       - KC_HTTP_RELATIVE_PATH=/
 
-      #- KC_PROXY=true
+      - KC_PROXY=true
       - KC_CACHE=ispn
       - KC_LOG_LEVEL=INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
     depends_on:
