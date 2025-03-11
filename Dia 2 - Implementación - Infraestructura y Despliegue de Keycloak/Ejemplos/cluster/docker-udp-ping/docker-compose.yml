@@ -1,0 +1,109 @@
+version: '3'
+
+services:
+  
+  db:
+    image: mysql:8.4
+    container_name: db_kc_udp
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=keycloakpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    
+  kc1:
+    container_name: kc1_udp
+    image: quay.io/keycloak/keycloak:26.1.2
+    command: ['start']
+    environment:
+      # Keycloak Configuration for HTTP
+      - KC_HOSTNAME=http://localhost:8000/
+      - KC_HTTP_ENABLED=true
+
+      # Keycloak Configuration for monitoring
+      - KC_HEALTH_ENABLED=true
+      - KC_METRICS_ENABLED=true
+
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://db:3306/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloakpassword
+
+      # Keycloak Configuration and Admin User
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+
+      - KC_HTTP_RELATIVE_PATH=/
+      
+      #- KC_PROXY=true
+      - KC_CACHE=ispn
+      - KC_LOG_LEVEL=INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - private
+      - db
+
+  kc2:
+    container_name: kc2_udp
+    image: quay.io/keycloak/keycloak:26.1.2
+    command: ['start']
+    environment:
+      # Keycloak Configuration for HTTP
+      - KC_HOSTNAME=http://localhost:8000/
+      - KC_HTTP_ENABLED=true
+
+      # Keycloak Configuration for monitoring
+      - KC_HEALTH_ENABLED=true
+      - KC_METRICS_ENABLED=true
+
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://db:3306/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloakpassword
+
+      # Keycloak Configuration and Admin User
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      
+      - KC_HTTP_RELATIVE_PATH=/
+
+      #- KC_PROXY=true
+      - KC_CACHE=ispn
+      - KC_LOG_LEVEL=INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - private
+      - db
+
+  lb:
+    container_name: kc_lb_udp
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8000:80"
+    networks:
+      - public
+      - private
+    depends_on:
+      - kc1
+      - kc2
+
+networks:
+  db:
+  private:
+  public:
