@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <!-- Fondo del logo -->
+  <rect width="300" height="100" fill="#005a87"/>
+  
+  <!-- Texto BPS -->
+  <text x="20" y="65" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="#ffffff">BPS</text>
+  
+  <!-- Texto completo -->
+  <text x="130" y="40" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">BANCO DE</text>
+  <text x="130" y="60" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">PREVISIÓN</text>
+  <text x="130" y="80" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">SOCIAL</text>
+  
+  <!-- Emblema nacional estilizado -->
+  <circle cx="260" cy="50" r="30" fill="#ffffff"/>
+  <path d="M260 25 L265 55 L245 35 L275 35 L255 55 Z" fill="#005a87"/>
+</svg>

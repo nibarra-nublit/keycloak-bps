@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8000/realms/keycloak-bps-curso-dia-1/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8000/realms/keycloak-bps-curso-dia-1
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

@@ -1,0 +1,25 @@
+{
+    "realm_roles": [
+      {
+        "name": "ROL_ANALISTA",
+        "description": "Rol para usuarios con perfil analista"
+      },
+      {
+        "name": "ROL_ADMIN",
+        "description": "Rol con privilegios administrativos"
+      }
+    ],
+    "client_roles": {
+      "bps-react-app": [
+        {
+          "name": "ROL_CLIENT_VIEWER",
+          "description": "Visualizador del client"
+        },
+        {
+          "name": "ROL_CLIENT_EDITOR",
+          "description": "Editor del client"
+        }
+      ]
+    }
+  }
+  

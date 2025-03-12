@@ -49,3 +49,33 @@
     - Cómo los roles definen permisos y accesos        
     - Uso de permisos en aplicaciones conectadas        
     - Escenarios prácticos para entender estas relaciones
+
+### **Dia 3**: Integración de Aplicaciones y Protocolos SSO
+
+**Público Objetivo:** Equipo de desarrollo
+
+**Temas a Cubrir:**P
+
+1. **[Integración con Aplicaciones Web]()**
+    
+    - Adaptadores Keycloak para aplicaciones Java y Node.js        
+    - Registro de clientes OIDC en Keycloak        
+    - Configuración de aplicaciones Angular y React para autenticación
+        
+2. **¨[Uso de la API de Keycloak]()**
+    
+    - Introducción a las APIs REST de Keycloak        
+    - Creación de usuarios y roles mediante scripts        
+    - Gestión de sesiones activas a través de la API
+        
+3. **¨[Personalización de Páginas y Templates]()**
+    
+    - Cambios en la apariencia de las páginas de inicio de sesión        
+    - Personalización de mensajes de error y validaciones        
+    - Branding avanzado para empresas
+        
+4. **[Autenticación de Dos Factores (2FA)]()**
+    
+    - Configuración de TOTP con aplicaciones móviles        
+    - Integración con proveedores de SMS        
+    - Opciones avanzadas para autenticación multifactor
