@@ -92,13 +92,13 @@
     - Registro de clientes OIDC en Keycloak        
     - Configuración de aplicaciones Angular y React para autenticación
         
-2. **¨[Uso de la API de Keycloak]()**
+2. **[Uso de la API de Keycloak]()**
     
     - Introducción a las APIs REST de Keycloak        
     - Creación de usuarios y roles mediante scripts        
     - Gestión de sesiones activas a través de la API
         
-3. **¨[Personalización de Páginas y Templates]()**
+3. **[Personalización de Páginas y Templates]()**
     
     - Cambios en la apariencia de las páginas de inicio de sesión        
     - Personalización de mensajes de error y validaciones        
