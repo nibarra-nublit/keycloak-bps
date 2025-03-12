@@ -80,38 +80,6 @@
     - Configuración de cortafuegos y restricciones de acceso        
     - Buenas prácticas para contraseñas y políticas de usuarios
 
-
-### **Dia 2**: Implementación - Infraestructura y Despliegue de Keycloak
-
-**Público Objetivo:** Equipo de Infraestructura
-
-**Temas a Cubrir:**
-        
-1. **[Arquitecturas de Despliegue](./Dia%202%20-%20Implementación%20-%20Infraestructura%20y%20Despliegue%20de%20Keycloak/Material/1.%20Arquitecturas%20de%20Despliegue.md)**
-    
-    - Modos de operación: standalone y cluster        
-    - Implementación On-premise vs. Cloud        
-    - Arquitecturas de alta disponibilidad y recuperación ante desastres
-        
-2. **[Instalación y Configuración Inicial](./Dia%202%20-%20Implementación%20-%20Infraestructura%20y%20Despliegue%20de%20Keycloak/Material/2.%20Instalación%20y%20Configuración%20Inicial.md)**
-    
-    - Prerrequisitos: Java (versión soportada), Base de Datos, Contenedores (Docker/Podman)     
-    - Pasos detallados de instalación        
-    - Configuración inicial: crear administrador y ajustes básicos
-        
-3. **[Configuración de Base de Datos y Conexiones](./Dia%202%20-%20Implementación%20-%20Infraestructura%20y%20Despliegue%20de%20Keycloak/Material/3.%20Configuración%20de%20Base%20de%20Datos%20y%20Conexiones.md)**
-    
-    - Creación de una base de datos PostgreSQL y configuración en Keycloak        
-    - Configuración alternativa con MySQL        
-    - Estrategias de respaldo y recuperación de datos
-        
-4. **[Hardening y Seguridad](./Dia%202%20-%20Implementación%20-%20Infraestructura%20y%20Despliegue%20de%20Keycloak/Material/4.%20Hardening%20y%20Seguridad.md)**
-    
-    - Implementación de HTTPS mediante certificados SSL        
-    - Configuración de cortafuegos y restricciones de acceso        
-    - Buenas prácticas para contraseñas y políticas de usuarios
-
-
 ### **Dia 3**: Integración de Aplicaciones y Protocolos SSO
 
 **Público Objetivo:** Equipo de desarrollo
