@@ -109,3 +109,27 @@
     - Configuración de TOTP con aplicaciones móviles        
     - Integración con proveedores de SMS        
     - Opciones avanzadas para autenticación multifactor
+
+### **Dia 4**: Operación - Mantenimiento y Resolución de Problemas
+
+**Público Objetivo:** Equipo de Infraestructura
+
+**Temas a Cubrir:**
+        
+1. **[Monitoreo y Mantenimiento de Keycloak]()**
+    
+    - Configuración de métricas para monitoreo con Prometheus y Grafana        
+    - Gestión de actualizaciones y parches de seguridad        
+    - Estrategias de escalabilidad y alta disponibilidad
+        
+2. **[Resolución de Problemas Comunes]()**
+	    
+	- Diagnóstico de errores de autenticación        
+	- Solución de problemas de configuración de clientes        
+	- Depuración de flujos de autenticación y logs avanzados
+
+3. **[Sesiones y Auditoria]()**
+
+	- Configuración de tiempos de expiración de sesiones        
+    - Monitorización en tiempo real de sesiones activas        
+    - Configuración de eventos de auditoría y generación de logs
