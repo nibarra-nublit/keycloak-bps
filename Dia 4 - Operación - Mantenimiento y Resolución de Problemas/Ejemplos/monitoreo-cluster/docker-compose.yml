@@ -1,0 +1,124 @@
+version: '3'
+
+services:
+  
+  db:
+    image: mysql:8.4
+    container_name: db_kc
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=keycloakpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    
+  kc1:
+    container_name: kc1
+    image: quay.io/keycloak/keycloak:26.1.2
+    command: start --features=user-event-metrics --metrics-enabled=true --http-metrics-slos=5 --event-metrics-user-enabled=true --event-metrics-user-events=authreqid_to_token,client_delete,client_info,client_initiated_account_linking,client_login,client_register,client_update,code_to_token,custom_required_action,delete_account,execute_action_token,execute_actions,federated_identity_link,federated_identity_override_link,grant_consent,identity_provider_first_login,identity_provider_link_account,identity_provider_login,identity_provider_post_login,identity_provider_response,identity_provider_retrieve_token,impersonate,introspect_token,invalid_signature,invite_org,login,logout,oauth2_device_auth,oauth2_device_code_to_token,oauth2_device_verify_user_code,oauth2_extension_grant,permission_token,pushed_authorization_request,refresh_token,register,register_node,remove_credential,remove_federated_identity,reset_password,restart_authentication,revoke_grant,send_identity_provider_link,send_reset_password,send_verify_email,token_exchange,unregister_node,update_consent,update_credential,update_email,update_totp,update_profile,update_credential --event-metrics-user-tags=realm,idp,clientId
+    environment:
+      # Keycloak Configuration for HTTP
+      - KC_HOSTNAME=http://localhost:8000/
+      - KC_HTTP_ENABLED=true
+
+      - KC_LOG_CONSOLE_LEVEL=DEBUG
+
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://db:3306/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloakpassword
+
+      # Keycloak Configuration and Admin User
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+
+      #- KC_PROXY="true"
+      - CACHE_OWNERS_COUNT=2
+      - CACHE_OWNERS_AUTH_SESSIONS_COUNT=2
+      - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
+      - JGROUPS_DISCOVERY_PROPERTIES="datasource_jndi_name=java:jboss/datasources/KeycloakDS,initialize_sql=\"CREATE TABLE IF NOT EXISTS JGROUPSPING (own_addr varchar(200) NOT NULL, cluster_name varchar(200) NOT NULL, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ping_data BYTEA, constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))\",remove_all_data_on_view_change=true"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - private
+      - db
+
+  kc2:
+    container_name: kc2
+    image: quay.io/keycloak/keycloak:26.1.2
+    command: start --features=user-event-metrics --metrics-enabled=true --http-metrics-slos=5 --event-metrics-user-enabled=true --event-metrics-user-events=authreqid_to_token,client_delete,client_info,client_initiated_account_linking,client_login,client_register,client_update,code_to_token,custom_required_action,delete_account,execute_action_token,execute_actions,federated_identity_link,federated_identity_override_link,grant_consent,identity_provider_first_login,identity_provider_link_account,identity_provider_login,identity_provider_post_login,identity_provider_response,identity_provider_retrieve_token,impersonate,introspect_token,invalid_signature,invite_org,login,logout,oauth2_device_auth,oauth2_device_code_to_token,oauth2_device_verify_user_code,oauth2_extension_grant,permission_token,pushed_authorization_request,refresh_token,register,register_node,remove_credential,remove_federated_identity,reset_password,restart_authentication,revoke_grant,send_identity_provider_link,send_reset_password,send_verify_email,token_exchange,unregister_node,update_consent,update_credential,update_email,update_totp,update_profile,update_credential --event-metrics-user-tags=realm,idp,clientId
+    environment:
+      # Keycloak Configuration for HTTP
+      - KC_HOSTNAME=http://localhost:8000/
+      - KC_HTTP_ENABLED=true
+
+      - KC_LOG_CONSOLE_LEVEL=DEBUG
+
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://db:3306/keycloak
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=keycloakpassword
+
+      # Keycloak Configuration and Admin User
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+
+      #- KC_PROXY="true"
+      - CACHE_OWNERS_COUNT=2
+      - CACHE_OWNERS_AUTH_SESSIONS_COUNT=2
+      - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
+      - JGROUPS_DISCOVERY_PROPERTIES="datasource_jndi_name=java:jboss/datasources/KeycloakDS,initialize_sql=\"CREATE TABLE IF NOT EXISTS JGROUPSPING (own_addr varchar(200) NOT NULL, cluster_name varchar(200) NOT NULL, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ping_data BYTEA, constraint PK_JGROUPSPING PRIMARY KEY (own_addr, cluster_name))\",remove_all_data_on_view_change=true"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - private
+      - db
+
+  lb:
+    container_name: kc_lb
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8000:80"
+    networks:
+      - public
+      - private
+    depends_on:
+      - kc1
+      - kc2
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - private
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - private
+      - public
+    depends_on:
+      - prometheus
+
+networks:
+  db:
+  private:
+  public:
