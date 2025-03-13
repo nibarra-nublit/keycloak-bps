@@ -98,7 +98,7 @@
     - Creación de usuarios y roles mediante scripts        
     - Gestión de sesiones activas a través de la API
         
-3. **[Personalización de Páginas y Templates]()**
+3. **[Personalización de Páginas y Templates](./Dia%203%20-%20Integración%20de%20Aplicaciones%20y%20Protocolos%20SSO/Material/3.%20Personalización%20de%20Páginas%20y%20Templates.md)**
     
     - Cambios en la apariencia de las páginas de inicio de sesión        
     - Personalización de mensajes de error y validaciones        
@@ -116,19 +116,19 @@
 
 **Temas a Cubrir:**
         
-1. **[Monitoreo y Mantenimiento de Keycloak]()**
+1. **[Monitoreo y Mantenimiento de Keycloak](./Dia%204%20-%20Operación%20-%20Mantenimiento%20y%20Resolución%20de%20Problemas/Material/1.%20Monitoreo%20y%20Mantenimiento%20de%20Keycloak.md)**
     
     - Configuración de métricas para monitoreo con Prometheus y Grafana        
     - Gestión de actualizaciones y parches de seguridad        
     - Estrategias de escalabilidad y alta disponibilidad
         
-2. **[Resolución de Problemas Comunes]()**
+2. **[Resolución de Problemas Comunes](./Dia%204%20-%20Operación%20-%20Mantenimiento%20y%20Resolución%20de%20Problemas/Material/2.%20Resolución%20de%20Problemas%20Comunes.md)**
 	    
 	- Diagnóstico de errores de autenticación        
 	- Solución de problemas de configuración de clientes        
 	- Depuración de flujos de autenticación y logs avanzados
 
-3. **[Sesiones y Auditoria]()**
+3. **[Sesiones y Auditoria](./Dia%204%20-%20Operación%20-%20Mantenimiento%20y%20Resolución%20de%20Problemas/Material/3.%20Sesiones%20y%20Auditoría.md)**
 
 	- Configuración de tiempos de expiración de sesiones        
     - Monitorización en tiempo real de sesiones activas        
